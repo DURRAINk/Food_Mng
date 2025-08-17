@@ -4,11 +4,14 @@ import pandas as pd
 from Database import * #search_food, prov_names, locations, food_types,engine, sql_queries, prov_city, get_table_data, update_query,tables
 
 queries=["1. How many food providers and receivers are there in each city?",
-"2. Which type of food provider (restaurant, grocery store, etc.) contributes the most food?",
-"3. What is the contact information of food providers in a specific city?", "4. Which receivers have claimed the most food?",
-"5.  What is the total quantity of food available from all providers?","6. Which city has the highest number of food listings?",
-"7. What are the most commonly available food types?","8. How many food claims have been made for each food item?", 
-"9. Which provider has had the highest number of successful food claims?","10. What percentage of food claims are completed vs. pending vs. canceled?"," 11. What is the average quantity of food claimed per receiver?","12. Which meal type (breakfast, lunch, dinner, snacks) is claimed the most?", "13. What is the total quantity of food donated by each provider?"]
+    "2. Which type of food provider (restaurant, grocery store, etc.) contributes the most food?",
+    "3. What is the contact information of food providers in a specific city?", "4. Which receivers have claimed the most food?",
+    "5.  What is the total quantity of food available from all providers?","6. Which city has the highest number of food listings?",
+    "7. What are the most commonly available food types?","8. How many food claims have been made for each food item?", 
+    "9. Which provider has had the highest number of successful food claims?","10. What percentage of food claims are completed vs. pending vs. canceled?",
+    "11. What is the average quantity of food claimed per receiver?","12. Which meal type (breakfast, lunch, dinner, snacks) is claimed the most?",
+    "13. What is the total quantity of food donated by each provider?","14. Claim date and expiry date of each food item",
+    "15. Which type of Receiver has received the highest quantity of food?"]
 
 # Set the page configuration
 st.set_page_config(
@@ -25,9 +28,7 @@ page_bg_img = '''
 }
 </style>
 '''
-
 st.markdown(page_bg_img, unsafe_allow_html=True)
-
 
 st.title("Food Management System")
 
@@ -113,7 +114,6 @@ elif menu == "CRUD Operations":
             new_record[lst[0]]=row1_cols[0].text_input(f"The {lst[0]}",
                                                        value=data.at[data.index[-1], lst[0]] + 1 if not data.empty else 1, disabled=True)
            
-
             # First row inputs
             for i, col in enumerate(lst[1:half]):
                 
@@ -134,13 +134,11 @@ elif menu == "CRUD Operations":
                 else:
                     new_record[col] = row2_cols[i].text_input(f"Enter {col}")
                     
-
             # Confirm creation
             if st.button("Add Record"):
                 st.success("✅ New record added successfully!")
                 st.dataframe(insert_table(tables[selected_table], new_record))
                 
-
         #---Update Operation-----
         elif selected_operation == "Update":
             data = get_table_data(selected_table)
@@ -247,7 +245,6 @@ elif menu == "Analysis":
                 st.bar_chart(data,x=data.columns[0], y=data.columns[1],horizontal=True)
                 
         
-
 #Contact Providers and Receivers----------------------------------------
 elif menu == "Contact Providers/Receivers":
     st.header("Contact Providers and Receivers")
