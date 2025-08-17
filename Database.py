@@ -5,7 +5,7 @@ server_name = "LAPTOP-O4M1T2S4\\SQLEXPRESS"
 database_name = "Food_Management"
 connection_string = (
     f"mssql+pyodbc://{server_name}/{database_name}"
-    "?driver=SQL+Server"
+    "?driver=ODBC+Driver+17+for+SQL+Server"
     "&trusted_connection=yes"
 )
 engine = create_engine(connection_string)
