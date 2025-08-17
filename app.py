@@ -1,5 +1,4 @@
 import streamlit as st
-import plotly.express as px
 import pandas as pd
 from Database import * #search_food, prov_names, locations, food_types,engine, sql_queries, prov_city, get_table_data, update_query,tables
 
