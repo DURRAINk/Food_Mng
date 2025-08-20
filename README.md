@@ -35,3 +35,23 @@ A secure, scalable, and professionally branded Streamlit app for tracking and ma
 2. **Install Dependencies**
    ```bash
    pip install -r requirements.txt
+3. **Run app.py**
+---
+3. **Storing data**
+   * The data is already stored in the `food_management.db` file.
+   * If you want to use your own sql server:
+        ```bash
+        pip install pyodbc   #for MSSQL
+        pip install pymysql   #for MYSQL
+   1. Creating the database in your server
+   2. In `database.py` replace:
+        ```bash
+        "sqlite:///food_management.db"
+   to
+        
+   
+        "mssql+pyodbc://user:pass@host/db?driver=ODBC+Driver+17+for+SQL+Server"  #for MSSQL
+
+        "mysql+pymysql://username:password@host:port/database_name" #for MYSQL
+        
+   4. **Run app.py**
