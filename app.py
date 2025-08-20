@@ -1,16 +1,9 @@
 import streamlit as st
 import pandas as pd
-from Database import * #search_food, prov_names, locations, food_types,engine, sql_queries, prov_city, get_table_data, update_query,tables
+from datetime import date
+from func import * #search_food, prov_names, locations, food_types,engine, sql_queries, prov_city, get_table_data, update_query,tables
 
-queries=["1. How many food providers and receivers are there in each city?",
-    "2. Which type of food provider (restaurant, grocery store, etc.) contributes the most food?",
-    "3. What is the contact information of food providers in a specific city?", "4. Which receivers have claimed the most food?",
-    "5.  What is the total quantity of food available from all providers?","6. Which city has the highest number of food listings?",
-    "7. What are the most commonly available food types?","8. How many food claims have been made for each food item?", 
-    "9. Which provider has had the highest number of successful food claims?","10. What percentage of food claims are completed vs. pending vs. canceled?",
-    "11. What is the average quantity of food claimed per receiver?","12. Which meal type (breakfast, lunch, dinner, snacks) is claimed the most?",
-    "13. What is the total quantity of food donated by each provider?","14. Claim date and expiry date of each food item",
-    "15. Which type of Receiver has received the highest quantity of food?"]
+
 
 # Set the page configuration
 st.set_page_config(
@@ -48,6 +41,7 @@ if menu == "Search":
     st.header("Search Food Listings")
     st.write("Search for food listings based on provider, location, and food type.")
     opts={'location': 'all', 'provider': 'all', 'food_type': 'all'}
+    prov_names, locations, food_types = get_distinct_values()
     col_1,col_2,col_3 = st.columns(3)
     opts['location']="'"+ col_2.selectbox("Select Location", ['all']+locations)+"'"
     opts['provider']="'"+ col_1.selectbox("Select Provider Type", ['all']+prov_names)+"'"
@@ -119,7 +113,8 @@ elif menu == "CRUD Operations":
                 i+=1
                 if data[col].dtype == 'int64':
                     new_record[col] = row1_cols[i].number_input(f"Enter {col}", value=0, step=1)
-               
+                elif col == 'Timestamp' or col== 'Expiry_Date':
+                    new_record[col] = row1_cols[i].date_input(f'Enter {col}',value= date.today())
                 else:
                     new_record[col] = row1_cols[i].text_input(f"Enter {col}")
                    
@@ -129,7 +124,8 @@ elif menu == "CRUD Operations":
                 
                 if data[col].dtype == 'int64':
                     new_record[col] = row2_cols[i].number_input(f"Enter {col}", value=0, step=1)
-                
+                elif col == 'Timestamp' or col== 'Expiry_Date':
+                    new_record[col] = row2_cols[i].date_input(f'Enter {col}',value= date.today())
                 else:
                     new_record[col] = row2_cols[i].text_input(f"Enter {col}")
                     
@@ -257,6 +253,11 @@ elif menu == "Contact Providers/Receivers":
 
 # About Us-------------------------------------------------------------
 elif menu == "About Us":
+    st.markdown('''Food wastage is a significant issue, with many households and restaurants discarding surplus food while numerous people struggle with food insecurity. This project aims to develop a Local Food Wastage Management System, where:\n
+    * Restaurants and individuals can list surplus food.\n
+    * NGOs or individuals in need can claim the food.\n
+    * SQL stores available food details and locations.\n
+    * A Streamlit app enables interaction, filtering, CRUD operation and visualization.''')
     st.header("About Us")
     st.divider()
     st.write("developed by")
