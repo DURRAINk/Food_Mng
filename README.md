@@ -25,8 +25,11 @@ A secure, scalable, and professionally branded Streamlit app for tracking and ma
 | Deployment   | Streamlit Cloud                     |
 
 ---
+## To use visit : 
+https://food-management-system-by-durraink.streamlit.app/
 
-## 📦 Setup Instructions
+## To develop:
+### 📦 Setup Instructions
 
 1. **Clone the repo**
    ```bash
