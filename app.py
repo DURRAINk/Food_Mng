@@ -44,7 +44,7 @@ if menu == "Search":
     prov_names, locations, food_types = get_distinct_values()
     col_1,col_2,col_3 = st.columns(3)
     opts['location']="'"+ col_2.selectbox("Select Location", ['all']+locations)+"'"
-    opts['provider']="'"+ col_1.selectbox("Select Provider Type", ['all']+prov_names)+"'"
+    opts['provider']="'"+ col_1.selectbox("Select Provider", ['all']+prov_names)+"'"
     opts['food_type']="'"+ col_3.selectbox("Select Food Type", ['all']+food_types)+"'"
     search_button=st.button("Search")
     if search_button:
