@@ -3,6 +3,10 @@
 A secure, scalable, and professionally branded Streamlit app for tracking and managing food inventory, expiry dates, and wastage metrics. Built with a robust SQL backend, modular CRUD operations, and role-based access control for collaborative deployment.
 
 ---
+## Visit to the app : 
+https://food-management-system-by-durraink.streamlit.app/
+
+---
 
 ## 🚀 Features
 
@@ -25,9 +29,6 @@ A secure, scalable, and professionally branded Streamlit app for tracking and ma
 | Deployment   | Streamlit Cloud                     |
 
 ---
-## To use visit : 
-https://food-management-system-by-durraink.streamlit.app/
-
 ## To develop:
 ### 📦 Setup Instructions
 
